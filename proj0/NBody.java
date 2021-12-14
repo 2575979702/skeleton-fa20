@@ -13,7 +13,7 @@ public class NBody{
 		double radius = in.readDouble();
 		Body[] body = new Body[planetNumber];
 		int index = 0;
-		while(index!=5){
+		while(index!=planetNumber){
 			double xxPos = in.readDouble();
 			double yyPos = in.readDouble();
 			double xxVel = in.readDouble();
@@ -38,7 +38,7 @@ public class NBody{
 		StdDraw.setScale(-radius,radius);
 		StdDraw.clear();
 
-		StdDraw.picture(0,0,"image/starfield.jpg");
+		StdDraw.picture(0,0,"images/starfield.jpg");
 		for(int i=0;i<body.length;i++){
 			body[i].draw();
 		}
