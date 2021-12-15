@@ -42,7 +42,44 @@ public class NBody{
 		for(int i=0;i<body.length;i++){
 			body[i].draw();
 		}
+		
+		StdDraw.enableDoubleBuffering();
+		int time = 0;
+		for(time = 0; time <= T; time++){
+			double[] xForces = new double[body.length];
+			double[] yForces = new double[body.length];
+			for(int i=0;i<body.length;i++){
+				xForces[i] = body[i].calcNetForceExertedByX(body);
+				yForces[i] = body[i].calcNetForceExertedByY(body);
+			}
+			for(int i=0;i<body.length;i++){
+				body[i].update(time, xForces[i], yForces[i]);
+			}
+			//Draw background
+			StdDraw.setScale(-radius,radius);
+			StdDraw.clear();
+			StdDraw.picture(0,0,"images/starfield.jpg");
+			for(Body b:body){
+				b.draw();
+			}
+			StdDraw.show();
+			StdDraw.pause(10);
+			
+		}
+		StdOut.printf("%d\n",body.length);
+                StdOut.printf("%.2e\n", radius);
+                for(int i=0;i<body.length;i++){
+                        StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                                        body[i].xxPos, body[i].yyPos, body[i].xxVel,
+                                        body[i].yyVel, body[i].mass, body[i].imgFileName);
+                }
+
 	}
+
+	
+
+
+
 
 
 
