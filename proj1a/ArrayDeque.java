@@ -36,10 +36,10 @@ public class ArrayDeque<T> {
     public void desize(){
         T[] temp = (T[]) new Object[item.length>>1];
         for(int i=0;i<size;i++){
-            temp[item.length+i] = get(i);
+            temp[temp.length/2+i] = get(i);
         }
-        nextfirst = item.length-1;
-        nextlast = item.length+size;
+        nextfirst =temp.length/2-1;
+        nextlast = temp.length/2+size;
         item = temp;
     }
 
