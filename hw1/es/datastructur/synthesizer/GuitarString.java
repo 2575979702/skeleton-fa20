@@ -10,7 +10,6 @@ public class GuitarString {
 
     /* Buffer for storing sound data. */
     private BoundedQueue<Double> buffer;
-
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {
         // TODO: Create a buffer with capacity = SR / frequency. You'll need to

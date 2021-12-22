@@ -26,8 +26,6 @@ public class NBody{
 	}
 
 
-
-
 	public static void main(String[] args){
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);

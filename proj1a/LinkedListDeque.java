@@ -12,21 +12,24 @@ public class LinkedListDeque<T> {
             this.prev = prev;
             this.next = next;
         }
+
+        public Node(T item){
+            this.item = item;
+            this.prev = null;
+            this.next = null;
+        }
     }
 
     /** Parameter Constructor */
     public LinkedListDeque(){
-        sentinel = new Node(null, null, null);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
+        //Cast integer to Object then to T
+        sentinel = new Node((T) (Object)(-1));
         size = 0;
     }
 
     /** Parameter Constructor with deep copy */
     public LinkedListDeque(LinkedListDeque other){
-        sentinel = new Node(null, null, null);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
+        sentinel = new Node((T) (Object)(-1));
         size = 0;
 
         for(int i=0;i<other.size();i++){
@@ -35,21 +38,39 @@ public class LinkedListDeque<T> {
 
     }
 
-
-
     /** Adds an item of type T to the front of the deque */
     public void addFirst(T item){
-        Node cur = new Node(item,sentinel,null);
-        cur.next = sentinel.next;
-        sentinel.next = cur;
+        Node cur = new Node(item);
+        if(size==0) {
+            sentinel.next = cur;
+            sentinel.prev = cur;
+            cur.next = sentinel;
+            cur.prev = sentinel;
+        }else{
+            sentinel.next.prev = cur;
+            sentinel.next = cur;
+            cur.next = sentinel.next.next;
+            cur.prev = sentinel;
+        }
+        // Null pointer here
         size +=1;
     }
 
     /** Adds an item of type T to the back of the deque */
     public void addLast(T item){
-        Node cur = new Node(item, null, sentinel);
-        cur.prev = sentinel.prev;
-        sentinel.prev = cur;
+        Node cur = new Node(item);
+        if(size==0) {
+            sentinel.next = cur;
+            sentinel.prev = cur;
+            cur.next = sentinel;
+            cur.prev = sentinel;
+        }else{
+            sentinel.prev.next = cur;
+            sentinel.prev = cur;
+            cur.next = sentinel;
+            cur.prev = sentinel.prev.prev;
+        }
+        // Null pointer here
         size +=1;
     }
 
@@ -78,8 +99,8 @@ public class LinkedListDeque<T> {
      * If no such item exists, returns null. */
     public T removeFirst(){
         T temp = this.get(0);
-        sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
         size --;
         return temp;
     }
@@ -87,8 +108,8 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
     public T removeLast(){
         T temp = this.get(size-1);
-        sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
         size --;
         return temp;
     }

@@ -1,4 +1,5 @@
-/*import org.junit.Test;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestPalindrome {
@@ -15,4 +16,15 @@ public class TestPalindrome {
         }
         assertEquals("persiflage", actual);
     }
-}     Uncomment this class once you've created your Palindrome class. */
+
+    @Test
+    public void testisPalindrome(){
+        assertTrue(palindrome.isPalindrome("sdfghjkllkjhgfds"));
+        assertFalse(palindrome.isPalindrome("sdsdsdsd"));
+    }
+//    public static void main(String[] args) {
+//    Deque d = palindrome.wordToDeque("persiflage");
+//    d.printDeque();
+//}
+}
+//Uncomment this class once you've created your Palindrome class.
