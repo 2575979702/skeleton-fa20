@@ -19,5 +19,13 @@ public class Palindrome {
         return str.reverse().toString().equals(word);
     }
 
-    /**  */
+    /** overload the isPalindrome method */
+    public boolean isPalindrome(String word, CharacterComparator cc){
+        if (word.length()==0||word.length()==1) return true;
+        for(int i=0;i<word.length()/2;i++){
+            if(!cc.equalChars(word.charAt(i),word.charAt(word.length()-i-1))) return false;
+        }
+        return true;
+    }
+
 }

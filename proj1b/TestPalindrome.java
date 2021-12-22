@@ -19,9 +19,10 @@ public class TestPalindrome {
 
     @Test
     public void testisPalindrome(){
-        assertTrue(palindrome.isPalindrome("sdfghjkllkjhgfds"));
+        assertTrue(palindrome.isPalindrome("flake",new OffByOne()));
         assertFalse(palindrome.isPalindrome("sdsdsdsd"));
     }
+
 //    public static void main(String[] args) {
 //    Deque d = palindrome.wordToDeque("persiflage");
 //    d.printDeque();
